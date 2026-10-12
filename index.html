@@ -201,8 +201,7 @@ input[type=text]{width:100%;min-height:48px;padding:6px 10px;background:var(--pa
 .stone.on{background:var(--paper);color:var(--ink)} .stone.me{background:var(--gold);color:var(--ink);animation:hop 1s steps(2) infinite}
 .star{color:var(--gold-lo);font:700 var(--t-m)/1 var(--f-read)}
 .bub{position:absolute;left:0;top:0;padding:1px 8px;white-space:nowrap;pointer-events:none;font:700 var(--t-s)/1.4 var(--f-small);color:var(--ink);background:var(--paper);border:2px solid var(--ink)}
-#prompt{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);z-index:6;max-width:calc(100% - 32px);animation:nudge 1s steps(2) infinite}
-@keyframes nudge{50%{bottom:74px}}
+#prompt{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);z-index:6;max-width:calc(100% - 32px)}
 #joy{position:absolute;left:16px;bottom:70px;z-index:6;width:104px;height:104px;display:none;align-items:center;justify-content:center;touch-action:none;
   background:rgba(247,242,230,.5);border:3px solid var(--ink)}
 #joyKnob{width:44px;height:44px;background:var(--oak);border:3px solid var(--ink);box-shadow:inset 3px 3px 0 var(--oak-hi),inset -3px -3px 0 var(--oak-lo);pointer-events:none}
@@ -2052,7 +2051,7 @@ function wardPanel() {
   const name = h('input', { type: 'text', id: 'nameIn', maxlength: 8, value: S.name, 'aria-label': '사육사 이름', autocomplete: 'off',
     oninput: e => { S.name = e.target.value.trim() || '사육사'; $('#hudName').textContent = S.name; save(); } });
   draw();
-  openPanel('옷장', h('div', { class: 'ward' }, h('div', { class: 'list' }, cv, h('div', { class: 'grp' }, h('span', null, '이름'), name), h('div', { class: 'grp' }, btn('처음부터 다시', resetPanel, 'warn sm'))), right));
+  openPanel('옷장', h('div', { class: 'ward' }, h('div', { class: 'list' }, cv, h('div', { class: 'grp' }, h('span', null, '이름'), name)), right));
   ward = openWard3D(cv);
 }
 
@@ -2203,7 +2202,8 @@ function helpPanel() {
     row('모으기', '반짝이는 별 조각 위를 지나가면 코인이 생겨요. 보물 상자도 찾아봐요.'),
     row('놀이터', 'Lv.2가 되면 동쪽에 다리가 놓여요. 다리를 건너면 풍선 터뜨리기, 짝 맞추기, 징검다리를 할 수 있어요.'),
     row('둘러보기', '화면을 끌면 돌아가고, 휠이나 두 손가락으로 크게 볼 수 있어요.')),
-    h('div', { class: 'row end' }, btn('출발!', closePanel, 'go'))]);
+    h('div', { class: 'row end' }, btn('출발!', closePanel, 'go')),
+    h('div', { class: 'row' }, btn('처음부터 다시', resetPanel, 'warn sm'))]);
 }
 function confetti(n) {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
